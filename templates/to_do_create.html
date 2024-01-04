@@ -1,0 +1,7 @@
+<h1>There you can create to do</h1>
+
+<form method="post" action="{% url 'to_do_create' %}">
+    {{ form }}
+    {% csrf_token %}
+    <button>Create</button>
+</form>

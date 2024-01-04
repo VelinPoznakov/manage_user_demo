@@ -1,0 +1,26 @@
+<h1>My list to do</h1>
+
+<ol type="1">
+    {% for to_do in object_list %}
+        <li>
+            {{ to_do.title }} - {{ to_do.description }}
+            <form action="{% url 'delete' to_do.pk %}" method="post">
+                {{ form }}
+                <button>delete</button>
+                {% csrf_token %}
+            </form>
+        </li>
+    {% endfor %}
+</ol>
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Previous</a><br>
+{% endif %}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next</a><br>
+{% endif %}
+
+<a href="{% url 'to_do_create' %}">Create</a>
+<a href="{% url 'home' %}">Home</a>
+
